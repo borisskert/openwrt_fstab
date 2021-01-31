@@ -1,11 +1,26 @@
 ---
 dependency:
   name: galaxy
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
 driver:
-  name: delegated
+  name: docker
+
 platforms:
-  - name: instance
+  - name: ansible-openwrt-fstab
+    image: docker.io/borisskert/python3:openwrt
+    pre_build_image: true
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    groups:
+      - docker
+
 provisioner:
   name: ansible
+
 verifier:
   name: ansible
