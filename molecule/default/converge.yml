@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include openwrt_fstab"
+      include_role:
+        name: "openwrt_fstab"
