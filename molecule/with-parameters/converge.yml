@@ -10,3 +10,12 @@
       fstab_auto_mount: false
       fstab_delay_root: 5
       fstab_check_fs: true
+      fstab_mounts:
+        - target: /mnt/sda
+          uuid: f865f3ee-6369-49ba-9a19-15240b6bcb63
+          enabled: true
+        - target: /mnt/sda1
+          uuid: 987fc3a6-f011-44dc-829c-c9343662c777
+          enabled: false
+        - target: /mnt/sda2
+          uuid: 7b8daaa3-c87c-4e41-99c7-9de594951994

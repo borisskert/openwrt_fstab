@@ -5,3 +5,12 @@ config global
 	option auto_mount '{{ fstab_auto_mount | int }}'
 	option delay_root '{{ fstab_delay_root }}'
 	option check_fs '{{ fstab_check_fs | int }}'
+{% for mount in fstab_mounts | default([]) %}
+
+config mount
+	option enabled '{{ mount.enabled | default(true) | int }}'
+	option uuid '{{ mount.uuid }}'
+{% if mount.target is defined and mount.target | length > 0 %}
+	option target '{{ mount.target }}'
+{% endif %}
+{% endfor %}

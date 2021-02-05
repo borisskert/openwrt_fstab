@@ -14,13 +14,22 @@ Ansible role to setup fstab config in OpenWRT.
 ## Role parameters
 
 | Variable      | Type | Default | Description           |
-|---------------|------|------------|---------|-----------------------|
-| fstab_anon_swap | boolean | true | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
-| fstab_anon_mount | boolean | true | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
-| fstab_auto_swap  | boolean | false | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
-| fstab_auto_mount | boolean | false | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
-| fstab_delay_root | boolean | `0`   | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
-| fstab_check_fs   | boolean | true  | [See official docs](https://openwrt.org/docs/guide-user/storage/fstab) |
+|---------------|------|---------|-----------------------|
+| fstab_anon_swap | boolean | `true` | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_anon_mount | boolean | `true` | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_auto_swap  | boolean | `false` | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_auto_mount | boolean | `false` | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_delay_root | boolean | `0`   | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_check_fs   | boolean | `true`  | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| fstab_mount      | list of `Mount` objects | `[]` | Represents Mount sections ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+
+### `Mount` sections
+
+| Variable      | Type | Mandatory? | Default | Description           |
+|---------------|------|---------|------------|-----------------------|
+| enabled       | boolean | no   | `true` | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| uuid          | string  | yes  |        | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
+| target        | string  | no   | (omitted) | ([See official docs](https://openwrt.org/docs/guide-user/storage/fstab#the_global_section)) |
 
 ## Usage
 
@@ -52,14 +61,22 @@ Ansible role to setup fstab config in OpenWRT.
 
   roles:
     - role: setup_fstab
-      fstab_anon_swap: false
-      fstab_anon_mount: false
-      fstab_auto_swap: true
-      fstab_auto_mount: true
+      fstab_anon_swap: true
+      fstab_anon_mount: true
+      fstab_auto_swap: false
+      fstab_auto_mount: false
       fstab_delay_root: 0
-      fstab_check_fs: false
+      fstab_check_fs: true
+      fstab_mounts:
+        - target: /mnt/sda
+          uuid: f865f3ee-6369-49ba-9a19-15240b6bcb63
+          enabled: true
+        - target: /mnt/sda1
+          uuid: 987fc3a6-f011-44dc-829c-c9343662c777
+          enabled: false
+        - target: /mnt/sda2
+          uuid: 7b8daaa3-c87c-4e41-99c7-9de594951994
 ```
-
 
 ## Testing
 
