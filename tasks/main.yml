@@ -1,1 +1,13 @@
 ---
+- name: Install needed packages
+  opkg:
+    name: block-mount,e2fsprogs,kmod-fs-ext4,kmod-usb-storage,kmod-usb2,kmod-usb3
+    update_cache: true
+
+- name: Create uci config fstab file
+  template:
+    src: fstab.j2
+    dest: /etc/config/fstab
+    owner: root
+    group: root
+    mode: 0600

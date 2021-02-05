@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: openwrt_fstab
+      fstab_anon_swap: true
+      fstab_anon_mount: true
+      fstab_auto_swap: false
+      fstab_auto_mount: false
+      fstab_delay_root: 5
+      fstab_check_fs: true

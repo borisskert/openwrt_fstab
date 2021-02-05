@@ -1,0 +1,7 @@
+config global
+	option anon_swap '{{ fstab_anon_swap | int }}'
+	option anon_mount '{{ fstab_anon_mount | int }}'
+	option auto_swap '{{ fstab_auto_swap | int }}'
+	option auto_mount '{{ fstab_auto_mount | int }}'
+	option delay_root '{{ fstab_delay_root }}'
+	option check_fs '{{ fstab_check_fs | int }}'

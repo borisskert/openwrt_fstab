@@ -1,1 +1,7 @@
 ---
+fstab_anon_swap: false
+fstab_anon_mount: false
+fstab_auto_swap: true
+fstab_auto_mount: true
+fstab_delay_root: 0
+fstab_check_fs: false
