@@ -1,1 +1,4 @@
 ---
+- name: Mount fstab devices
+  command: /etc/init.d/fstab boot
+  changed_when: false
